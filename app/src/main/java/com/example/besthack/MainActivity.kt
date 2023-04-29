@@ -3,19 +3,14 @@ package com.example.besthack
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.besthack.Screens.LoadingScreen
-import com.example.besthack.ui.theme.BestHackTheme
+import com.example.besthack.composables.screens.LoadingScreen
+import com.example.besthack.screens.CitiesScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +25,7 @@ class MainActivity : ComponentActivity() {
 fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "loading"
+    startDestination: String = "cities"
 ) {
     NavHost(
         modifier = modifier,
@@ -39,6 +34,9 @@ fun MyAppNavHost(
     ) {
         composable("loading") {
             LoadingScreen()
+        }
+        composable("cities"){
+            CitiesScreen(citiesList = listOf("Moscow","Saint-Petersburg","Tula", "Volgograd"))
         }
     }
 }
