@@ -4,6 +4,7 @@ import com.example.besthack.models.PetrolCityCourse
 import com.example.besthack.models.PetrolCourse
 import com.example.besthack.models.PetrolPeriodCourse
 import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 class PetrolRepositoryImpl : PetrolRepository {
@@ -19,6 +20,24 @@ class PetrolRepositoryImpl : PetrolRepository {
                             )
                         )
                     )
+                )
+            )
+        }
+
+    override fun getCities(): Flow<List<String>> =
+        callbackFlow {
+            trySendBlocking(
+                listOf(
+                    "Москва",
+                    "Санкт-Петербург",
+                    "Новосибирск",
+                    "Екатеринбург",
+                    "Казань",
+                    "Нижний Новгород",
+                    "Челябинск",
+                    "Самара",
+                    "Омск",
+                    "Ростов-на-Дону"
                 )
             )
         }
