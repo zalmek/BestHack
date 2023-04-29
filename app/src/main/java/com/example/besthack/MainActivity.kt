@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -13,9 +15,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.besthack.composables.screens.CourseScreen
 import com.example.besthack.composables.screens.LoadingScreen
 import com.example.besthack.network.BestHackApi
 import com.example.besthack.screens.CitiesScreen
+import com.example.besthack.vm.PetrolViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -55,7 +59,7 @@ fun MyAppNavHost(
 ) {
 
     val courseUiState by viewModel.courseUiState.collectAsState()
-//    val citiesUiState by viewModel.citiesUiState.collectAsState()
+    val citiesUiState by viewModel.citiesUiState.collectAsState()
 
     NavHost(
         modifier = modifier,
@@ -67,7 +71,7 @@ fun MyAppNavHost(
         }
         composable("cities") {
 //            CitiesScreen(citiesList = citiesUiState.cities)
-            CitiesScreen(citiesList = cities)
+            CitiesScreen(citiesList = citiesUiState.cities)
 //            CitiesScreen(citiesList = listOf(
 //                "Москва",
 //                "Санкт-Петербург",

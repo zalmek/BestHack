@@ -45,12 +45,14 @@ fun CitiesScreen(
                 fontWeight = FontWeight.Bold
             )
         }
-       LazyColumn(
-        modifier
-            .background(Color.White)
-            .fillMaxSize()) {
-        items(citiesList) { it ->
-            CityItem(cityName = it as String)
+        LazyColumn(
+            modifier
+                .background(Color.White)
+                .fillMaxSize()
+        ) {
+            items(citiesList) { it ->
+                CityItem(cityName = it as String)
+            }
         }
     }
 }
