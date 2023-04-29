@@ -1,6 +1,6 @@
 package com.example.besthack.domain
 
-import com.example.besthack.models.PetrolCityCourse
+import com.example.besthack.ui.theme.models.PetrolCityCourse
 import kotlinx.coroutines.flow.Flow
 
 interface PetrolRepository {

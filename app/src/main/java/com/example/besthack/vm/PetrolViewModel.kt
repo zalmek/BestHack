@@ -3,7 +3,7 @@ package com.example.besthack.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.besthack.domain.PetrolRepository
-import com.example.besthack.models.PetrolCityCourse
+import com.example.besthack.ui.theme.models.PetrolCityCourse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

@@ -1,8 +1,8 @@
 package com.example.besthack.domain
 
-import com.example.besthack.models.PetrolCityCourse
-import com.example.besthack.models.PetrolCourse
-import com.example.besthack.models.PetrolPeriodCourse
+import com.example.besthack.ui.theme.models.PetrolCityCourse
+import com.example.besthack.ui.theme.models.PetrolCourse
+import com.example.besthack.ui.theme.models.PetrolPeriodCourse
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
