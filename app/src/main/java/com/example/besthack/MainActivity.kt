@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,10 +51,10 @@ fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = "cities",
-    //viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
 
-//    val courseUiState by viewModel.courseUiState.collectAsState()
+    val courseUiState by viewModel.courseUiState.collectAsState()
 //    val citiesUiState by viewModel.citiesUiState.collectAsState()
 
     NavHost(
@@ -80,8 +81,8 @@ fun MyAppNavHost(
 //                "Ростов-на-Дону"
 //            ))
         }
-        composable("course") {
-
+        composable("city course") {
+//            CourseScreen(citiesList = courseUiState.petrolCityCourse.petrolPeriodCourses)
         }
     }
 }
