@@ -22,6 +22,7 @@ import com.example.besthack.composables.screens.LoadingScreen
 import com.example.besthack.network.BestHackApi
 import com.example.besthack.screens.CitiesScreen
 import com.example.besthack.vm.PetrolViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,7 +31,8 @@ import okhttp3.internal.cache.DiskLruCache.Snapshot
 
 val cities: SnapshotStateList<String> = mutableStateListOf()
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity(/*petrolViewModel: PetrolViewModel = hiltViewModel()*/) : ComponentActivity() {
     //val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(PetrolViewModel::class.java)
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {

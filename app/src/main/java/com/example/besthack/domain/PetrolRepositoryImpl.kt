@@ -6,8 +6,9 @@ import com.example.besthack.ui.theme.models.PetrolPeriodCourse
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
-class PetrolRepositoryImpl : PetrolRepository {
+class PetrolRepositoryImpl @Inject constructor() : PetrolRepository {
     override fun getPetrolCityCourse(city: String, dateStart: String, dateEnd: String) =
         callbackFlow {
             trySendBlocking(
