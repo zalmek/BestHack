@@ -3,6 +3,7 @@ package com.example.besthack.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.besthack.domain.PetrolRepository
+import com.example.besthack.domain.PetrolRepositoryImpl
 import com.example.besthack.ui.theme.models.PetrolCityCourse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PetrolViewModel @Inject constructor(private val petrolRepository: PetrolRepository) : ViewModel() {
+class PetrolViewModel @Inject constructor(private val petrolRepository: PetrolRepositoryImpl) : ViewModel() {
     private val _citiesUiState = MutableStateFlow(CitiesUiState.Success(emptyList()))
     val citiesUiState = _citiesUiState.asStateFlow()
 

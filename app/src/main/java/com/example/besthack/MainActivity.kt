@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -32,7 +33,7 @@ import okhttp3.internal.cache.DiskLruCache.Snapshot
 val cities: SnapshotStateList<String> = mutableStateListOf()
 
 @AndroidEntryPoint
-class MainActivity(/*petrolViewModel: PetrolViewModel = hiltViewModel()*/) : ComponentActivity() {
+class MainActivity() : ComponentActivity() {
     //val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(PetrolViewModel::class.java)
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
