@@ -3,6 +3,7 @@ package com.example.besthack.domain
 import com.example.besthack.ui.theme.models.PetrolCityCourse
 import com.example.besthack.ui.theme.models.PetrolCourse
 import com.example.besthack.ui.theme.models.PetrolPeriodCourse
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -23,6 +24,7 @@ class PetrolRepositoryImpl @Inject constructor() : PetrolRepository {
                     )
                 )
             )
+            awaitClose()
         }
 
     override fun getCities(): Flow<List<String>> =
@@ -41,5 +43,5 @@ class PetrolRepositoryImpl @Inject constructor() : PetrolRepository {
                     "Ростов-на-Дону"
                 )
             )
-        }
+        awaitClose()}
 }
