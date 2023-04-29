@@ -1,6 +1,7 @@
 package com.example.besthack.screens
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,14 +10,18 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.besthack.cities
 import com.example.besthack.composables.city_recycler.CityItem
+import com.example.besthack.vm.PetrolViewModel
 
 @Composable
 fun CitiesScreen(
+    petrolViewModel: PetrolViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
     citiesList: List<Any>   // TODO Any -> City
 ) {
+    Log.d(TAG, "${petrolViewModel.getCities()}")
     Log.d(ContentValues.TAG, "MyAppNavHost: ${cities.size}")
     LazyColumn(
         modifier
