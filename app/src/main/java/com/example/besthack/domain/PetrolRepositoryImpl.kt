@@ -1,5 +1,7 @@
 package com.example.besthack.domain
 
+import com.example.besthack.network.ApiHelper
+import com.example.besthack.network.BestHackApi
 import com.example.besthack.ui.theme.models.PetrolCityCourse
 import com.example.besthack.ui.theme.models.PetrolCourse
 import com.example.besthack.ui.theme.models.PetrolPeriodCourse
@@ -30,18 +32,7 @@ class PetrolRepositoryImpl @Inject constructor() : PetrolRepository {
     override fun getCities(): Flow<List<String>> =
         callbackFlow {
             trySendBlocking(
-                listOf(
-                    "Москва",
-                    "Санкт-Петербург",
-                    "Новосибирск",
-                    "Екатеринбург",
-                    "Казань",
-                    "Нижний Новгород",
-                    "Челябинск",
-                    "Самара",
-                    "Омск",
-                    "Ростов-на-Дону"
-                )
+                ApiHelper(BestHackApi.api).getCities().map { it.city }
             )
         awaitClose()}
 }

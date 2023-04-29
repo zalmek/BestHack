@@ -6,6 +6,7 @@ import com.example.besthack.domain.PetrolRepository
 import com.example.besthack.domain.PetrolRepositoryImpl
 import com.example.besthack.ui.theme.models.PetrolCityCourse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -21,7 +22,8 @@ class PetrolViewModel @Inject constructor(private val petrolRepository: PetrolRe
     val courseUiState = _courseUiState.asStateFlow()
 
     fun getCities() {
-        viewModelScope.launch {
+        viewModelScope.launch(CoroutineExceptionHandler{ _, exception ->
+            println("CoroutineExceptionHandler got $exception") }) {
             petrolRepository.getCities()
                 .collect { cities ->
                     _citiesUiState.value = CitiesUiState.Success(cities)
@@ -30,7 +32,8 @@ class PetrolViewModel @Inject constructor(private val petrolRepository: PetrolRe
     }
 
     fun getPetrolCityCourse(city: String, dateStart: String, dateEnd: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(CoroutineExceptionHandler{ _, exception ->
+            println("CoroutineExceptionHandler got $exception") }) {
             petrolRepository.getPetrolCityCourse(city, dateStart, dateEnd)
                 .collect { petrolCityCourse ->
                     _courseUiState.value = PetrolCourceUiState.Success(petrolCityCourse)

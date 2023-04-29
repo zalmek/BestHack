@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,32 +14,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.besthack.composables.screens.CourseScreen
 import com.example.besthack.composables.screens.LoadingScreen
-import com.example.besthack.network.BestHackApi
 import com.example.besthack.screens.CitiesScreen
 import com.example.besthack.vm.PetrolViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 val cities: SnapshotStateList<String> = mutableStateListOf()
 
 @AndroidEntryPoint
 class MainActivity() : ComponentActivity() {
-    //val viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(PetrolViewModel::class.java)
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalScope.launch(Dispatchers.IO) {
-            val ccities = BestHackApi.api.getCities()
-            ccities.forEach{
-                cities.add(it.city)
-            }
-        }
-
 
         setContent {
             val navController = rememberNavController()
