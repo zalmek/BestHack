@@ -1,5 +1,6 @@
 package com.example.besthack.screens
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.background
@@ -15,16 +16,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.besthack.cities
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.besthack.composables.city_recycler.CityItem
+import com.example.besthack.vm.PetrolViewModel
 
 @Composable
 fun CitiesScreen(
+    petrolViewModel: PetrolViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
     citiesList: List<String>
 
 ) {
+
 //    Log.d(ContentValues.TAG, "MyAppNavHost: ${cities.size}")
     Column(Modifier.fillMaxSize()) {
         TopAppBar(
@@ -39,18 +45,12 @@ fun CitiesScreen(
                 fontWeight = FontWeight.Bold
             )
         }
-        LazyColumn(
-            modifier
-                .background(Color.White)
-        ) {
-            items(citiesList) { it ->
-                CityItem(
-                    modifier = Modifier.clickable {
-                        Log.d(TAG, "CitiesScreen: Hello!!!${it.toString()}")
-                    },
-                    cityName = it as String
-                )
-            }
+       LazyColumn(
+        modifier
+            .background(Color.White)
+            .fillMaxSize()) {
+        items(citiesList) { it ->
+            CityItem(cityName = it as String)
         }
     }
 }
