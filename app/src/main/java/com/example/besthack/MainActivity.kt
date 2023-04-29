@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.besthack.composables.screens.CourseScreen
 import com.example.besthack.composables.screens.LoadingScreen
 import com.example.besthack.screens.CitiesScreen
 import com.example.besthack.vm.PetrolViewModel
@@ -38,7 +39,7 @@ class MainActivity() : ComponentActivity() {
 fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "loading",
+    startDestination: String = "city course",
     viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
 
@@ -76,7 +77,7 @@ fun MyAppNavHost(
 //            ))
         }
         composable("city course") {
-//            CourseScreen(citiesList = courseUiState.petrolCityCourse.petrolPeriodCourses)
+            CourseScreen(courses = courseUiState.petrolCityCourse)
         }
     }
 }
