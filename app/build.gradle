@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id("com.google.devtools.ksp").version("1.6.10-1.0.4")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 android {
@@ -48,6 +48,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     def room_version = "2.5.1"
     def nav_version = "2.5.3"
     implementation 'androidx.core:core-ktx:1.10.0'
