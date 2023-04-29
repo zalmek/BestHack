@@ -1,7 +1,6 @@
 package com.example.besthack.network
 
 import com.example.besthack.ui.theme.models.City
-import com.example.besthack.vm.CitiesUiState
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
