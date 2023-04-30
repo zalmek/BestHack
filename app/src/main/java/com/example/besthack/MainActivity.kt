@@ -39,7 +39,7 @@ class MainActivity() : ComponentActivity() {
 fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "loading",
+    startDestination: String = "city course",
     viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
 
@@ -70,11 +70,11 @@ fun MyAppNavHost(
             CitiesScreen(citiesList = citiesUiState.cities, onCityChoice = {})
         }
         composable("city course") {
-            viewModel.getPetrolCityCourse(city)
-            Log.d(TAG, "MyAppNavHost: ${courseUiState.petrolCityCourse.petrolPeriodCourses.size}")
-            if (courseUiState.petrolCityCourse.petrolPeriodCourses.isEmpty())
-                LoadingScreen()
-            else
+//            viewModel.getPetrolCityCourse(city)
+//            Log.d(TAG, "MyAppNavHost: ${courseUiState.petrolCityCourse.petrolPeriodCourses.size}")
+//            if (courseUiState.petrolCityCourse.petrolPeriodCourses.isEmpty())
+//                LoadingScreen()
+//            else
                 CourseScreen(courses = courseUiState.petrolCityCourse)
         }
     }
