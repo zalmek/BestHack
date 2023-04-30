@@ -12,6 +12,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -23,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.besthack.R
 import com.example.besthack.ui.theme.models.PetrolCityCourse
+import com.example.besthack.ui.theme.models.PetrolCourse
+import com.example.besthack.ui.theme.models.PetrolPeriodCourse
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -36,6 +39,7 @@ fun CourseScreen(
     fun reverse(date: String): String {
         return date.slice(8..9) + "." + date.slice(5..6) + "." + date.slice(0..3)
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -67,7 +71,9 @@ fun CourseScreen(
             Text(text = courses.city + " - период: ", color = Color.White)
             Column() {
                 Text(modifier = Modifier.padding(15.dp),text = beginDate, color = Color.White)
-                Button(modifier = Modifier.padding(end = 10.dp).align(CenterHorizontally),onClick = {showPicker1=true}, colors = ButtonDefaults.buttonColors(backgroundColor = Color(android.graphics.Color.parseColor("#2688EB")))) {
+                Button(modifier = Modifier
+                    .padding(end = 10.dp)
+                    .align(CenterHorizontally),onClick = {showPicker1=true}, colors = ButtonDefaults.buttonColors(backgroundColor = Color(android.graphics.Color.parseColor("#2688EB")))) {
                     Image(imageVector = ImageVector.vectorResource(R.drawable.baseline_edit_calendar_24), contentDescription = "Change begin date")
                 }
             }
@@ -129,6 +135,7 @@ fun CourseScreen(
                 mDatePickerDialog2.datePicker.minDate = System.currentTimeMillis()-1000L*60*60*24*365*10
                 mDatePickerDialog2.show()
             }
+            val list_of_courses = courses.petrolPeriodCourses.filter { it.date in beginDate..endDate}.toMutableStateList()
             showPicker1 = false
             showPicker2 = false
         }
