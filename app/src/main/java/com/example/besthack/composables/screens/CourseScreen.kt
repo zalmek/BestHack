@@ -115,6 +115,7 @@ fun CourseScreen(
             )
             if (showPicker1) {
                 mDatePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+                mDatePickerDialog.datePicker.minDate = System.currentTimeMillis()-1000L*60*60*24*365*10
                 mDatePickerDialog.show()
             }
             val mDatePickerDialog2 = DatePickerDialog(
@@ -125,6 +126,7 @@ fun CourseScreen(
             )
             if (showPicker2) {
                 mDatePickerDialog2.datePicker.maxDate = System.currentTimeMillis()
+                mDatePickerDialog2.datePicker.minDate = System.currentTimeMillis()-1000L*60*60*24*365*10
                 mDatePickerDialog2.show()
             }
             showPicker1 = false
