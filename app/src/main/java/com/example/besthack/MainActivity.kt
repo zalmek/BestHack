@@ -72,7 +72,7 @@ fun MyAppNavHost(
         composable("city course") {
             viewModel.getPetrolCityCourse(city)
             Log.d(TAG, "MyAppNavHost: ${courseUiState.petrolCityCourse.petrolPeriodCourses.size}")
-            if (citiesUiState.cities.isEmpty())
+            if (citiesUiState.cities.isEmpty()) // TODO courseUiState.petrolCityCourse.petrolPeriodCourses.isEmpty()
                 LoadingScreen()
             else
                 CourseScreen(courses = courseUiState.petrolCityCourse)
