@@ -1,5 +1,6 @@
 package com.example.besthack.screens
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -51,9 +52,7 @@ fun CitiesScreen(
                 .fillMaxSize()
         ) {
             items(citiesList) {
-                CityItem(modifier = Modifier.clickable(enabled = true, onClick = {
-                    c
-                }),cityName = it)
+                CityItem(modifier = Modifier.clickable { onCityChoice(it) },cityName = it)
             }
         }
     }
