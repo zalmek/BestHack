@@ -1,6 +1,7 @@
 package com.example.besthack
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -10,10 +11,12 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.besthack.composables.screens.ChartScreen
 import com.example.besthack.composables.screens.CourseScreen
 import com.example.besthack.composables.screens.LoadingScreen
 import com.example.besthack.screens.CitiesScreen
@@ -28,8 +31,6 @@ class MainActivity() : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val navController = rememberNavController()
-
             MyAppNavHost()
         }
     }
@@ -39,12 +40,16 @@ class MainActivity() : ComponentActivity() {
 fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "city course",
-    viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    startDestination: String = "cities",
+    viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    petrolViewModel: PetrolViewModel = hiltViewModel()
 ) {
 
     val courseUiState by viewModel.courseUiState.collectAsState()
     val citiesUiState by viewModel.citiesUiState.collectAsState()
+    val testPetrol by petrolViewModel.citiesUiState.collectAsState()
+
+    Log.d("TAG", "From petrol VM - ${testPetrol.cities[0]}")
 
     NavHost(
         modifier = modifier,
@@ -61,23 +66,13 @@ fun MyAppNavHost(
 
         }
         composable("cities") {
-//            CitiesScreen(citiesList = citiesUiState.cities)
             CitiesScreen(citiesList = citiesUiState.cities)
-//            CitiesScreen(citiesList = listOf(
-//                "Москва",
-//                "Санкт-Петербург",
-//                "Новосибирск",
-//                "Екатеринбург",
-//                "Казань",
-//                "Нижний Новгород",
-//                "Челябинск",
-//                "Самара",
-//                "Омск",
-//                "Ростов-на-Дону"
-//            ))
         }
         composable("city course") {
             CourseScreen(courses = courseUiState.petrolCityCourse)
+        }
+        composable("chart") {
+            ChartScreen(petrolCityCourse = courseUiState.petrolCityCourse)
         }
     }
 }
