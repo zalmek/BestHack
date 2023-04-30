@@ -15,16 +15,14 @@ class PetrolRepositoryImpl @Inject constructor() : PetrolRepository {
     override fun getPetrolCityCourse(city: String, dateStart: String, dateEnd: String) =
         callbackFlow {
             trySendBlocking(
-                PetrolCityCourse(
-                    city, listOf(
-                        PetrolPeriodCourse(
-                            dateStart, listOf(
-                                PetrolCourse("96", 100f),
-                                PetrolCourse("98", 101f)
-                            )
-                        )
-                    )
-                )
+                ApiHelper(BestHackApi.api).getCityCourse(city)
+            )
+            awaitClose()
+        }
+    override fun getPetrolCityCourse(city: String) =
+        callbackFlow {
+            trySendBlocking(
+                ApiHelper(BestHackApi.api).getCityCourse(city)
             )
             awaitClose()
         }

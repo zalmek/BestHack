@@ -2,6 +2,7 @@ package com.example.besthack.network
 
 import android.util.Log
 import com.example.besthack.ui.theme.models.City
+import com.example.besthack.ui.theme.models.PetrolCityCourse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -10,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface BestHackApi {
 
@@ -17,6 +19,9 @@ interface BestHackApi {
 
     @GET("cities")
     suspend fun getCities(): List<City>
+
+    @GET("city_course/{city}")
+    suspend fun getCityCourse(@Path("city") city: String) : PetrolCityCourse
 
     companion object RetrofitBuilder{
         private const val BASE_URL = "https://644d4a6957f12a1d3ddc4d6e.mockapi.io/"

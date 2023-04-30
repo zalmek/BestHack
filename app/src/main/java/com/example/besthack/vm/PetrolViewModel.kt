@@ -41,6 +41,16 @@ class PetrolViewModel @Inject constructor(private val petrolRepository: PetrolRe
         }
     }
 
+    fun getPetrolCityCourse(city: String) {
+        viewModelScope.launch(CoroutineExceptionHandler{ _, exception ->
+            println("CoroutineExceptionHandler got $exception") }) {
+            petrolRepository.getPetrolCityCourse(city)
+                .collect { petrolCityCourse ->
+                    _courseUiState.value = PetrolCourceUiState.Success(petrolCityCourse)
+                }
+        }
+    }
+
 }
 
 sealed class PetrolCourceUiState {

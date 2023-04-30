@@ -27,8 +27,8 @@ import com.example.besthack.vm.PetrolViewModel
 fun CitiesScreen(
     petrolViewModel: PetrolViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
-    citiesList: List<String>
-
+    citiesList: List<String>,
+    onCityChoice: (String)->Unit
 ) {
 
 //    Log.d(ContentValues.TAG, "MyAppNavHost: ${cities.size}")
@@ -50,8 +50,10 @@ fun CitiesScreen(
                 .background(Color.White)
                 .fillMaxSize()
         ) {
-            items(citiesList) { it ->
-                CityItem(cityName = it as String)
+            items(citiesList) {
+                CityItem(modifier = Modifier.clickable(enabled = true, onClick = {
+                    c
+                }),cityName = it)
             }
         }
     }
