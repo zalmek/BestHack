@@ -35,10 +35,10 @@ interface BestHackApi {
 
                 while (!responseOK && tryCount < 3) {
                     try {
-                        response = chain.proceed(request);
-                        responseOK = response.isSuccessful;
+                        response = chain.proceed(request)
+                        responseOK = response.isSuccessful
                     }catch (e: Exception){
-                        Log.d("TAG", "Request is not successful - $tryCount");
+                        Log.d("TAG", "Request is not successful - $tryCount")
                     }finally{
                         tryCount++
                     }

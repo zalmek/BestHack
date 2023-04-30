@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 val cities: SnapshotStateList<String> = mutableStateListOf()
 
 @AndroidEntryPoint
-class MainActivity() : ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,7 +39,7 @@ class MainActivity() : ComponentActivity() {
 fun MyAppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "city course",
+    startDestination: String = "loading",
     viewModel: PetrolViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
 
@@ -70,11 +70,11 @@ fun MyAppNavHost(
             CitiesScreen(citiesList = citiesUiState.cities, onCityChoice = {})
         }
         composable("city course") {
-//            viewModel.getPetrolCityCourse(city)
-//            Log.d(TAG, "MyAppNavHost: ${courseUiState.petrolCityCourse.petrolPeriodCourses.size}")
-//            if (courseUiState.petrolCityCourse.petrolPeriodCourses.isEmpty())
-//                LoadingScreen()
-//            else
+            viewModel.getPetrolCityCourse(city)
+            Log.d(TAG, "MyAppNavHost: ${courseUiState.petrolCityCourse.petrolPeriodCourses.size}")
+            if (citiesUiState.cities.isEmpty())
+                LoadingScreen()
+            else
                 CourseScreen(courses = courseUiState.petrolCityCourse)
         }
     }

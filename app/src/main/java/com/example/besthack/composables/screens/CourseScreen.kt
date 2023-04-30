@@ -12,8 +12,6 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,11 +19,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.besthack.R
 import com.example.besthack.ui.theme.models.PetrolCityCourse
-import com.example.besthack.ui.theme.models.PetrolCourse
-import com.example.besthack.ui.theme.models.PetrolPeriodCourse
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -33,7 +28,7 @@ import java.util.*
 @Composable
 fun CourseScreen(
     modifier: Modifier = Modifier,
-    courses: PetrolCityCourse
+    courses: PetrolCityCourse,
 ) {
     //2202.03.30
     fun reverse(date: String): String {
@@ -69,7 +64,7 @@ fun CourseScreen(
             elevation = 10.dp
         ) {
             Text(text = courses.city + " - период: ", color = Color.White)
-            Column() {
+            Column {
                 Text(modifier = Modifier.padding(15.dp),text = beginDate, color = Color.White)
                 Button(modifier = Modifier
                     .padding(end = 10.dp)
@@ -78,12 +73,12 @@ fun CourseScreen(
                 }
             }
 
-            Column() {
+            Column {
                 Text(modifier = Modifier.padding(15.dp),text = " - ", color = Color.White)
             }
 
 
-            Column() {
+            Column {
                 Text(modifier = Modifier.padding(15.dp),text = endDate, color = Color.White)
                 Button(modifier = Modifier.align(CenterHorizontally), onClick = {showPicker2=true}, colors = ButtonDefaults.buttonColors(backgroundColor = Color(android.graphics.Color.parseColor("#2688EB")))) {
                     Image(imageVector = ImageVector.vectorResource(R.drawable.baseline_edit_calendar_24), contentDescription = "Change begin date")                }
